@@ -1,0 +1,57 @@
+C  Project Name : 
+C  Board Name : 
+C  Date : 2021/5/11
+C  Time : 2:41:59
+C  
+C  --------------- Layer Stackup --------------------
+C  
+C  Top Layer
+C  Bottom Layer
+C  
+C  --------------------------------------------------
+C  
+P  JOB
+P  UNITS CUST
+P  TITLE Pro918A.tmp
+P  NUM 1.0
+P  REV A
+P  VER IPC-D-356A
+P  IMAGE PRIMARY
+317                       -0    D1181UA00X 020400Y 021200X0000          S0
+317                       -0    D1181UA00X 020400Y 010950X0000          S0
+317                       -0    D1181UA00X 038400Y 010950X0000          S0
+317                       -0    D1181UA00X 038400Y 021200X0000          S0
+317                 Zkey1 -3    D0394PA00X 025489Y 018558X0000          S0
+317                 Zkey1 -4    D0394PA00X 025489Y 020330X0000          S0
+317                 ZRe1  -3    D0394PA00X 036839Y 018558X0000          S0
+317                 ZRe1  -4    D0394PA00X 036839Y 020330X0000          S0
+317GGND             P1    -2    D0394PA00X 029928Y 016450X0000          S0
+317GGND             Zkey1 -2    D0394PA00X 022811Y 018558X0000          S0
+317GGND             ZRe1  -1    D0394PA00X 034161Y 020330X0000          S0
+317GGND             U1    -1    D0394PA00X 024000Y 016668X0000          S0
+317GGND             U1    -2    D0394PA00X 024000Y 015684X0000          S0
+317GGND             U1    -3    D0394PA00X 024000Y 014700X0000          S0
+317LED1_Zig         P1    -7    D0394PA00X 029928Y 011450X0000          S0
+327LED1_Zig         ZRX1  -2         PA01X 031450Y 017550X0500          S0
+317LED1_Zig         VIA   -     D0280PA00X 031400Y 013900X0000          S0
+317LED1_Zig         VIA   -     D0280PA00X 031800Y 016900X0000          S0
+317LED2_Zig         P1    -8    D0394PA00X 030928Y 011450X0000          S0
+327LED2_Zig         ZTX1  -2         PA01X 027700Y 017550X0500          S0
+317LED2_Zig         VIA   -     D0280PA00X 027279Y 015329X0000          S0
+317NetP1_4          P1    -4    D0394PA00X 027928Y 016450X0000          S0
+317NetP1_4          Zkey1 -1    D0394PA00X 022811Y 020330X0000          S0
+327NetR1_1          ZRX1  -1         PA01X 030450Y 017550X0600Y0500R000 S0
+327NetR1_1          R1    -1         PA01X 032450Y 017550X0500Y0500R090 S0
+327NetR2_1          ZTX1  -1         PA01X 026700Y 017550X0600Y0500R000 S0
+327NetR2_1          R2    -1         PA01X 028700Y 017550X0500Y0500R090 S0
+317RESET            P1    -3    D0394PA00X 028928Y 016450X0000          S0
+317RESET            ZRe1  -2    D0394PA00X 034161Y 018558X0000          S0
+317RX_Zigbee        U1    -5    D0394PA00X 024000Y 012732X0000          S0
+317RX_Zigbee        P1    -6    D0394PA00X 028928Y 011450X0000          S0
+317TX_Zigbee        U1    -6    D0394PA00X 024000Y 011747X0000          S0
+317TX_Zigbee        P1    -5    D0394PA00X 027928Y 011450X0000          S0
+317VCC3.3           U1    -4    D0394PA00X 024000Y 013716X0000          S0
+327VCC3.3           R2    -2         PA01X 029600Y 017550X0500Y0500R090 S0
+317VCC3.3           P1    -1    D0394PA00X 030928Y 016450X0000          S0
+327VCC3.3           R1    -2         PA01X 033350Y 017550X0500Y0500R090 S0
+999

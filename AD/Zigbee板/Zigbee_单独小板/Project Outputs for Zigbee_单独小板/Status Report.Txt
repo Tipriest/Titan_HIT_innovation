@@ -1,0 +1,11 @@
+Output: Test Point Report
+Type  : Test Points
+From  : Variant [[No Variations]] of Project [Zigbee_µ¥¶ÀÐ¡°å.PrjPcb]
+   Generated File[Assembly Testpoint Report for PCB1.csv]
+   Generated File[Assembly Testpoint Report for PCB1.ipc]
+
+
+Files Generated   : 2
+Documents Printed : 0
+
+Finished Output Generation At 2:41:59 On 2021/5/11

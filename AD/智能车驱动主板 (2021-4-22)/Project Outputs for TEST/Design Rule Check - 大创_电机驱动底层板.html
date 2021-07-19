@@ -1,0 +1,539 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2021/5/11</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4:32:47</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc" class="file"><acronym title="C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc">C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">69</td></tr>
+</table>
+</td>
+</table><a name="ID1G3YHVVXTTBNBDXDS3YPF1X3HMYXRIUGA5S0XYOLS4MQZJEZCAKL"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGADXKIYHKF11HXURKQWCGTIANOP4TR2JCF3VFBGWYX0J4G0K1MC">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOIIAVWSQQRNBOMITUCDDV4QHUMSJR4LSEEITLVKI5OVR103M1LUD">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYLF4YE2CBYXUOJEMOFGNTXXLTPWYMYRW1E5WZAMX1ZBHD5KMOZML">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDAMS4RVNXOJL4KBDJVQITWBUNTLQWDEGVT31Z2C2BII4T3VTSLEG">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQVW1BECE2XAZPI31IUQHDOQRPEKW5E5QN20EUFLQLVEZ10IYVJDC">Width Constraint (Min=10mil) (Max=100mil) (Preferred=20mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZRLIT1HIQEBBK4A35W5J1T5CPOPMGIMVSVHLAWPSXZYAP40V51AB">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBBQUXLJ1FRN0BLF3LEBK3Z34IBJYESDZU3Q5NE53YFYNTYT3IYN">Hole Size Constraint (Min=1mil) (Max=44071.885mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLDWZDN1JQCIECL4AZ5QXABZOACEHJOFFEFPVENI3MYV11OI4L3XO">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIPFT1JOXKRK3IYM334VV1BMPJI3KWEBOWF3VYXCUTEXETFBV4NMJ">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHOXH5LCZ3R3GJ1V2SYD154UYDOEHAQF3IXAFQTF3UQ4GGSCIWR4C">Silk To Solder Mask (Clearance=1mil) (IsPad),(All)</a></td>
+<td class="column2">52</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAUTDG33AZXSGOTS1VD3CUSYZJ5FK0LZR4C4GLNRXYLQNCZC1RB">Silk to Silk (Clearance=1mil) (All),(All)</a></td>
+<td class="column2">17</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZLQEU4BF1L0KCASMTXWZRZG4RHHOH1WGHNF4DXOELKNWOQ3QOMCF">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLQ4ALUYTB4FSGA3H4KYN0HVCKPEAAKNAM1OJXRF0UYIEW5C3UJPN">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">69</td>
+</tr>
+</table><br><a name="IDHOXH5LCZ3R3GJ1V2SYD154UYDOEHAQF3IXAFQTF3UQ4GGSCIWR4C"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=1mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3075.437mil|Location2.X=3077.104mil|Location1.Y=1220.396mil|Location2.Y=1222.063mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3075.437mil|Location2.X=3077.104mil|Location1.Y=1220.396mil|Location2.Y=1222.063mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Arc (3149.056mil,1251.378mil) on Top Overlay And Pad U2-0(3149.056mil,1251.378mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3075.437mil|Location2.X=3077.104mil|Location1.Y=2670.002mil|Location2.Y=2671.669mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3075.437mil|Location2.X=3077.104mil|Location1.Y=2670.002mil|Location2.Y=2671.669mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Arc (3149.056mil,2700.984mil) on Top Overlay And Pad U2-0(3149.056mil,2700.984mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.72mil|Location2.X=3084.386mil|Location1.Y=3038.034mil|Location2.Y=3039.7mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.72mil|Location2.X=3084.386mil|Location1.Y=3038.034mil|Location2.Y=3039.7mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Arc (3156.338mil,3069.016mil) on Top Overlay And Pad U3-0(3156.338mil,3069.016mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.72mil|Location2.X=3084.386mil|Location1.Y=4487.64mil|Location2.Y=4489.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.72mil|Location2.X=3084.386mil|Location1.Y=4487.64mil|Location2.Y=4489.307mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Arc (3156.338mil,4518.622mil) on Top Overlay And Pad U3-0(3156.338mil,4518.622mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4525.043mil|Location2.X=4526.71mil|Location1.Y=1220.396mil|Location2.Y=1222.063mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4525.043mil|Location2.X=4526.71mil|Location1.Y=1220.396mil|Location2.Y=1222.063mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Arc (4598.662mil,1251.378mil) on Top Overlay And Pad U2-0(4598.662mil,1251.378mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4525.043mil|Location2.X=4526.71mil|Location1.Y=2670.002mil|Location2.Y=2671.669mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4525.043mil|Location2.X=4526.71mil|Location1.Y=2670.002mil|Location2.Y=2671.669mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Arc (4598.662mil,2700.984mil) on Top Overlay And Pad U2-0(4598.662mil,2700.984mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4532.326mil|Location2.X=4533.993mil|Location1.Y=3038.034mil|Location2.Y=3039.7mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4532.326mil|Location2.X=4533.993mil|Location1.Y=3038.034mil|Location2.Y=3039.7mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Arc (4605.945mil,3069.016mil) on Top Overlay And Pad U3-0(4605.945mil,3069.016mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4532.326mil|Location2.X=4533.993mil|Location1.Y=4487.64mil|Location2.Y=4489.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4532.326mil|Location2.X=4533.993mil|Location1.Y=4487.64mil|Location2.Y=4489.307mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Arc (4605.945mil,4518.622mil) on Top Overlay And Pad U3-0(4605.945mil,4518.622mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4833.001mil|Location2.X=4834.668mil|Location1.Y=3799.023mil|Location2.Y=3800.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4833.001mil|Location2.X=4834.668mil|Location1.Y=3799.023mil|Location2.Y=3800.689mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Arc (4965mil,4000mil) on Top Overlay And Pad D1-1(4850mil,3763.938mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2631.412mil|Location2.X=2633.079mil|Location1.Y=4631.667mil|Location2.Y=4633.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2631.412mil|Location2.X=2633.079mil|Location1.Y=4631.667mil|Location2.Y=4633.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad SW1-1(2665mil,4665mil) on Multi-Layer And Track (2315mil,4632.5mil)(5465mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2948.608mil|Location2.X=2950.274mil|Location1.Y=4636.667mil|Location2.Y=4638.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2948.608mil|Location2.X=2950.274mil|Location1.Y=4636.667mil|Location2.Y=4638.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad SW1-2(2965mil,4665mil) on Multi-Layer And Track (2315mil,4632.5mil)(5465mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5757.989mil|Location2.X=5760.239mil|Location1.Y=942.025mil|Location2.Y=944.275mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5757.989mil|Location2.X=5760.239mil|Location1.Y=942.025mil|Location2.Y=944.275mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.118mil &lt; 1mil) Between Pad 右后电机1-0(5700mil,943.15mil) on Top Layer And Track (5763.11mil,943.15mil)(5818.11mil,943.15mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.118mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1458.377mil|Location2.Y=1460.043mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1458.377mil|Location2.Y=1460.043mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右后电机1-1(5610mil,1457.48mil) on Top Layer And Track (5598.11mil,943.15mil)(5598.11mil,1578.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1379.636mil|Location2.Y=1381.303mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1379.636mil|Location2.Y=1381.303mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右后电机1-2(5610mil,1378.74mil) on Top Layer And Track (5598.11mil,943.15mil)(5598.11mil,1578.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1300.896mil|Location2.Y=1302.563mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1300.896mil|Location2.Y=1302.563mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右后电机1-3(5610mil,1300mil) on Top Layer And Track (5598.11mil,943.15mil)(5598.11mil,1578.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1222.156mil|Location2.Y=1223.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1222.156mil|Location2.Y=1223.822mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右后电机1-4(5610mil,1221.26mil) on Top Layer And Track (5598.11mil,943.15mil)(5598.11mil,1578.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1143.416mil|Location2.Y=1145.082mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1143.416mil|Location2.Y=1145.082mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右后电机1-5(5610mil,1142.52mil) on Top Layer And Track (5598.11mil,943.15mil)(5598.11mil,1578.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1064.676mil|Location2.Y=1066.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=1064.676mil|Location2.Y=1066.342mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右后电机1-6(5610mil,1063.78mil) on Top Layer And Track (5598.11mil,943.15mil)(5598.11mil,1578.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5757.989mil|Location2.X=5760.239mil|Location1.Y=4088.284mil|Location2.Y=4090.534mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5757.989mil|Location2.X=5760.239mil|Location1.Y=4088.284mil|Location2.Y=4090.534mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.118mil &lt; 1mil) Between Pad 右前电机1-0(5700mil,4089.409mil) on Top Layer And Track (5763.11mil,4089.409mil)(5818.11mil,4089.409mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.118mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4604.636mil|Location2.Y=4606.303mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4604.636mil|Location2.Y=4606.303mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右前电机1-1(5610mil,4603.74mil) on Top Layer And Track (5598.11mil,4089.409mil)(5598.11mil,4724.37mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4525.896mil|Location2.Y=4527.563mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4525.896mil|Location2.Y=4527.563mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右前电机1-2(5610mil,4525mil) on Top Layer And Track (5598.11mil,4089.409mil)(5598.11mil,4724.37mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4447.156mil|Location2.Y=4448.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4447.156mil|Location2.Y=4448.823mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右前电机1-3(5610mil,4446.26mil) on Top Layer And Track (5598.11mil,4089.409mil)(5598.11mil,4724.37mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4368.416mil|Location2.Y=4370.082mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4368.416mil|Location2.Y=4370.082mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右前电机1-4(5610mil,4367.52mil) on Top Layer And Track (5598.11mil,4089.409mil)(5598.11mil,4724.37mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4289.676mil|Location2.Y=4291.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4289.676mil|Location2.Y=4291.342mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右前电机1-5(5610mil,4288.779mil) on Top Layer And Track (5598.11mil,4089.409mil)(5598.11mil,4724.37mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4210.935mil|Location2.Y=4212.602mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5597.277mil|Location2.X=5598.944mil|Location1.Y=4210.935mil|Location2.Y=4212.602mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 右前电机1-6(5610mil,4210.039mil) on Top Layer And Track (5598.11mil,4089.409mil)(5598.11mil,4724.37mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3862.296mil|Location2.Y=3863.963mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3862.296mil|Location2.Y=3863.963mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧编码器-1(2315mil,3883.701mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3759.595mil|Location2.Y=3761.262mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3759.595mil|Location2.Y=3761.262mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧编码器-2(2315mil,3785.276mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3661.17mil|Location2.Y=3662.836mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3661.17mil|Location2.Y=3662.836mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧编码器-3(2315mil,3686.85mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3562.745mil|Location2.Y=3564.411mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3562.745mil|Location2.Y=3564.411mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧编码器-4(2315mil,3588.425mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3464.32mil|Location2.Y=3465.986mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3464.32mil|Location2.Y=3465.986mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧编码器-5(2315mil,3490mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3365.894mil|Location2.Y=3367.561mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3365.894mil|Location2.Y=3367.561mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧编码器-6(2315mil,3391.575mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3040.851mil|Location2.Y=3042.517mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3040.851mil|Location2.Y=3042.517mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧使能-1(2305mil,3065.276mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=2933.476mil|Location2.Y=2935.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=2933.476mil|Location2.Y=2935.142mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧使能-2(2305mil,2966.85mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=2835.051mil|Location2.Y=2836.717mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=2835.051mil|Location2.Y=2836.717mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧使能-3(2305mil,2868.425mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=2736.626mil|Location2.Y=2738.292mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=2736.626mil|Location2.Y=2738.292mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧使能-4(2305mil,2770mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=2638.2mil|Location2.Y=2639.867mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=2638.2mil|Location2.Y=2639.867mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧使能-5(2305mil,2671.575mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=2539.775mil|Location2.Y=2541.442mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=2539.775mil|Location2.Y=2541.442mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左侧使能-6(2305mil,2573.15mil) on Multi-Layer And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2024.761mil|Location2.X=2027.011mil|Location1.Y=1586.985mil|Location2.Y=1589.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2024.761mil|Location2.X=2027.011mil|Location1.Y=1586.985mil|Location2.Y=1589.235mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.118mil &lt; 1mil) Between Pad 左后电机1-0(2085mil,1588.11mil) on Top Layer And Track (1966.89mil,1588.11mil)(2021.89mil,1588.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.118mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1071.217mil|Location2.Y=1072.883mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1071.217mil|Location2.Y=1072.883mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左后电机1-1(2175mil,1073.779mil) on Top Layer And Track (2186.89mil,953.149mil)(2186.89mil,1588.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1149.957mil|Location2.Y=1151.623mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1149.957mil|Location2.Y=1151.623mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左后电机1-2(2175mil,1152.52mil) on Top Layer And Track (2186.89mil,953.149mil)(2186.89mil,1588.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1228.697mil|Location2.Y=1230.364mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1228.697mil|Location2.Y=1230.364mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左后电机1-3(2175mil,1231.26mil) on Top Layer And Track (2186.89mil,953.149mil)(2186.89mil,1588.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1307.437mil|Location2.Y=1309.104mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1307.437mil|Location2.Y=1309.104mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左后电机1-4(2175mil,1310mil) on Top Layer And Track (2186.89mil,953.149mil)(2186.89mil,1588.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1386.177mil|Location2.Y=1387.844mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1386.177mil|Location2.Y=1387.844mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左后电机1-5(2175mil,1388.74mil) on Top Layer And Track (2186.89mil,953.149mil)(2186.89mil,1588.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1464.918mil|Location2.Y=1466.584mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2186.057mil|Location2.X=2187.723mil|Location1.Y=1464.918mil|Location2.Y=1466.584mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左后电机1-6(2175mil,1467.48mil) on Top Layer And Track (2186.89mil,953.149mil)(2186.89mil,1588.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2009.761mil|Location2.X=2012.011mil|Location1.Y=4726.985mil|Location2.Y=4729.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2009.761mil|Location2.X=2012.011mil|Location1.Y=4726.985mil|Location2.Y=4729.235mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.118mil &lt; 1mil) Between Pad 左前电机1-0(2070mil,4728.11mil) on Top Layer And Track (1951.89mil,4728.11mil)(2006.89mil,4728.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.118mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2039.743mil|Location2.X=2041.41mil|Location1.Y=4063.772mil|Location2.Y=4065.438mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2039.743mil|Location2.X=2041.41mil|Location1.Y=4063.772mil|Location2.Y=4065.438mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左前电机1-0(2071.89mil,4093.149mil) on Top Layer And Text "左侧编码器" (1954.829mil,4004.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4211.217mil|Location2.Y=4212.883mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4211.217mil|Location2.Y=4212.883mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左前电机1-1(2160mil,4213.779mil) on Top Layer And Track (2171.89mil,4093.149mil)(2171.89mil,4728.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4289.957mil|Location2.Y=4291.623mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4289.957mil|Location2.Y=4291.623mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左前电机1-2(2160mil,4292.52mil) on Top Layer And Track (2171.89mil,4093.149mil)(2171.89mil,4728.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4368.697mil|Location2.Y=4370.364mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4368.697mil|Location2.Y=4370.364mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左前电机1-3(2160mil,4371.26mil) on Top Layer And Track (2171.89mil,4093.149mil)(2171.89mil,4728.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4447.437mil|Location2.Y=4449.104mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4447.437mil|Location2.Y=4449.104mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左前电机1-4(2160mil,4450mil) on Top Layer And Track (2171.89mil,4093.149mil)(2171.89mil,4728.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4526.177mil|Location2.Y=4527.844mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4526.177mil|Location2.Y=4527.844mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左前电机1-5(2160mil,4528.74mil) on Top Layer And Track (2171.89mil,4093.149mil)(2171.89mil,4728.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4604.917mil|Location2.Y=4606.584mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.057mil|Location2.X=2172.723mil|Location1.Y=4604.917mil|Location2.Y=4606.584mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 1mil) Between Pad 左前电机1-6(2160mil,4607.48mil) on Top Layer And Track (2171.89mil,4093.149mil)(2171.89mil,4728.11mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDAUTDG33AZXSGOTS1VD3CUSYZJ5FK0LZR4C4GLNRXYLQNCZC1RB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=1mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4731.886mil|Location2.X=4733.553mil|Location1.Y=4003.742mil|Location2.Y=4005.409mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4731.886mil|Location2.X=4733.553mil|Location1.Y=4003.742mil|Location2.Y=4005.409mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Arc (4965mil,4000mil) on Top Overlay And Text "+" (4735.63mil,3975mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5342.934mil|Location2.X=5345.184mil|Location1.Y=4047.191mil|Location2.Y=4049.441mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5342.934mil|Location2.X=5345.184mil|Location1.Y=4047.191mil|Location2.Y=4049.441mil|Absolute=True">Silk To Silk Clearance Constraint: (0.235mil &lt; 1mil) Between Arc (5305mil,4185.787mil) on Top Overlay And Text "右侧使能" (5305.149mil,3974.11mil) on Top Overlay Silk Text to Silk Clearance [0.235mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4736.607mil|Location2.X=4738.274mil|Location1.Y=4003.685mil|Location2.Y=4005.351mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4736.607mil|Location2.X=4738.274mil|Location1.Y=4003.685mil|Location2.Y=4005.351mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Text "+" (4735.63mil,3975mil) on Top Overlay And Track (4737.441mil,2937.52mil)(4737.441mil,4650.118mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2892.381mil|Location2.X=2894.047mil|Location1.Y=4636.667mil|Location2.Y=4638.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2892.381mil|Location2.X=2894.047mil|Location1.Y=4636.667mil|Location2.Y=4638.333mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Text "ON" (2885mil,4705mil) on Top Overlay And Track (2315mil,4632.5mil)(5465mil,4632.5mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3124.066mil|Location2.X=3126.316mil|Location1.Y=4713.868mil|Location2.Y=4716.118mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3124.066mil|Location2.X=3126.316mil|Location1.Y=4713.868mil|Location2.Y=4716.118mil|Absolute=True">Silk To Silk Clearance Constraint: (0.414mil &lt; 1mil) Between Text "U3" (3020.016mil,4665.01mil) on Top Overlay And Track (3127.898mil,4674mil)(3127.898mil,4746mil) on Top Overlay Silk Text to Silk Clearance [0.414mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3124.056mil|Location2.X=3126.306mil|Location1.Y=4673.221mil|Location2.Y=4675.471mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3124.056mil|Location2.X=3126.306mil|Location1.Y=4673.221mil|Location2.Y=4675.471mil|Absolute=True">Silk To Silk Clearance Constraint: (0.478mil &lt; 1mil) Between Text "U3" (3020.016mil,4665.01mil) on Top Overlay And Track (3127.898mil,4674mil)(3289.898mil,4674mil) on Top Overlay Silk Text to Silk Clearance [0.477mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5417.498mil|Location2.X=5419.748mil|Location1.Y=3275.256mil|Location2.Y=3277.506mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5417.498mil|Location2.X=5419.748mil|Location1.Y=3275.256mil|Location2.Y=3277.506mil|Absolute=True">Silk To Silk Clearance Constraint: (0.623mil &lt; 1mil) Between Text "电源接口2" (5235.38mil,3202.347mil) on Top Overlay And Track (5279.449mil,3281.693mil)(5732.205mil,3281.693mil) on Top Overlay Silk Text to Silk Clearance [0.623mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5458.398mil|Location2.X=5460.648mil|Location1.Y=3204.46mil|Location2.Y=3206.71mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5458.398mil|Location2.X=5460.648mil|Location1.Y=3204.46mil|Location2.Y=3206.71mil|Absolute=True">Silk To Silk Clearance Constraint: (0.955mil &lt; 1mil) Between Text "电源接口2" (5235.38mil,3202.347mil) on Top Overlay And Track (5465mil,1127.5mil)(5465mil,4632.5mil) on Top Overlay Silk Text to Silk Clearance [0.955mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5309.718mil|Location2.X=5311.385mil|Location1.Y=2390.899mil|Location2.Y=2392.566mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5309.718mil|Location2.X=5311.385mil|Location1.Y=2390.899mil|Location2.Y=2392.566mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Text "右侧编码器" (5199.829mil,2399.11mil) on Top Overlay And Track (5247.795mil,2386.732mil)(5700.551mil,2386.732mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5468.886mil|Location2.X=5471.136mil|Location1.Y=2396.597mil|Location2.Y=2398.847mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5468.886mil|Location2.X=5471.136mil|Location1.Y=2396.597mil|Location2.Y=2398.847mil|Absolute=True">Silk To Silk Clearance Constraint: (0.021mil &lt; 1mil) Between Text "右侧编码器" (5199.829mil,2399.11mil) on Top Overlay And Track (5465mil,1127.5mil)(5465mil,4632.5mil) on Top Overlay Silk Text to Silk Clearance [0.021mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5331.973mil|Location2.X=5333.64mil|Location1.Y=3970.899mil|Location2.Y=3972.566mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5331.973mil|Location2.X=5333.64mil|Location1.Y=3970.899mil|Location2.Y=3972.566mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Text "右侧使能" (5305.149mil,3974.11mil) on Top Overlay And Track (5279.449mil,3966.732mil)(5732.205mil,3966.732mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5462.953mil|Location2.X=5464.62mil|Location1.Y=3974.017mil|Location2.Y=3975.683mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5462.953mil|Location2.X=5464.62mil|Location1.Y=3974.017mil|Location2.Y=3975.683mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Text "右侧使能" (5305.149mil,3974.11mil) on Top Overlay And Track (5465mil,1127.5mil)(5465mil,4632.5mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5577.287mil|Location2.X=5578.953mil|Location1.Y=1699.091mil|Location2.Y=1700.758mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5577.287mil|Location2.X=5578.953mil|Location1.Y=1699.091mil|Location2.Y=1700.758mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Text "右后电机1" (5332.717mil,1625.37mil) on Top Overlay And Track (5247.795mil,1701.693mil)(5700.551mil,1701.693mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5464.167mil|Location2.X=5465.833mil|Location1.Y=1619.227mil|Location2.Y=1620.894mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5464.167mil|Location2.X=5465.833mil|Location1.Y=1619.227mil|Location2.Y=1620.894mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Text "右后电机1" (5332.717mil,1625.37mil) on Top Overlay And Track (5465mil,1127.5mil)(5465mil,4632.5mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5703.933mil|Location2.X=5705.6mil|Location1.Y=1698.17mil|Location2.Y=1699.837mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5703.933mil|Location2.X=5705.6mil|Location1.Y=1698.17mil|Location2.Y=1699.837mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Text "右后电机1" (5332.717mil,1625.37mil) on Top Overlay And Track (5700.551mil,1701.693mil)(5700.551mil,2386.732mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2319.167mil|Location2.X=2320.833mil|Location1.Y=4006.237mil|Location2.Y=4007.903mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2319.167mil|Location2.X=2320.833mil|Location1.Y=4006.237mil|Location2.Y=4007.903mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Text "左侧编码器" (1954.829mil,4004.11mil) on Top Overlay And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A9%B1%E5%8A%A8%E4%B8%BB%E6%9D%BF (2021-4-22)\%E5%A4%A7%E5%88%9B_%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BA%95%E5%B1%82%E6%9D%BF.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3179.356mil|Location2.Y=3181.023mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\智能车驱动主板 (2021-4-22)\大创_电机驱动底层板.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.167mil|Location2.X=2315.833mil|Location1.Y=3179.356mil|Location2.Y=3181.023mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 1mil) Between Text "左侧使能" (1945.149mil,3184.11mil) on Top Overlay And Track (2315mil,1127.5mil)(2315mil,4632.5mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

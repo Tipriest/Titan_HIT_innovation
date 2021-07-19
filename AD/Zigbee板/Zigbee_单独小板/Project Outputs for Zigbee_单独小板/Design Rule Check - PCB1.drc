@@ -1,0 +1,58 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc
+Date     : 2021/5/11
+Time     : 2:39:52
+
+Processing Rule : Clearance Constraint (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.254mm) (Max=2.54mm) (Preferred=0.762mm) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.025mm) (Max=3.5mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=0.025mm) (IsPad),(All)
+   Violation between Silk To Solder Mask Clearance Constraint: (0.004mm < 0.025mm) Between Pad Free-0(97.536mm,27.813mm) on Multi-Layer And Track (92.506mm,27.433mm)(95.756mm,27.433mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.004mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.025mm) Between Pad Free-0(97.536mm,27.813mm) on Multi-Layer And Track (95.756mm,27.433mm)(95.756mm,43.433mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]
+Rule Violations :2
+
+Processing Rule : Silk to Silk (Clearance=0.025mm) (All),(All)
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.025mm) Between Text "DRF1609H" (94.488mm,37.846mm) on Top Overlay And Text "DTK ELECTRONICS" (94.488mm,39.751mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.025mm) Between Text "P1" (64.262mm,41.275mm) on Top Overlay And Track (64.056mm,36.233mm)(64.056mm,43.133mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (0mm < 0.025mm) Between Text "R1" (81.661mm,45.72mm) on Top Overlay And Track (81.509mm,45.491mm)(85.623mm,45.491mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (0.001mm < 0.025mm) Between Text "R2" (72.009mm,45.72mm) on Top Overlay And Text "ZTX1" (66.676mm,45.72mm) on Top Overlay Silk Text to Silk Clearance [0.001mm]
+   Violation between Silk To Silk Clearance Constraint: (0.002mm < 0.025mm) Between Text "R2" (72.009mm,45.72mm) on Top Overlay And Track (71.984mm,43.663mm)(71.984mm,45.491mm) on Top Overlay Silk Text to Silk Clearance [0.002mm]
+   Violation between Silk To Silk Clearance Constraint: (0mm < 0.025mm) Between Text "R2" (72.009mm,45.72mm) on Top Overlay And Track (71.984mm,45.491mm)(76.098mm,45.491mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (0.022mm < 0.025mm) Between Text "ZRX1" (76.201mm,45.72mm) on Top Overlay And Track (71.984mm,45.491mm)(76.098mm,45.491mm) on Top Overlay Silk Text to Silk Clearance [0.022mm]
+   Violation between Silk To Silk Clearance Constraint: (0.022mm < 0.025mm) Between Text "ZRX1" (76.201mm,45.72mm) on Top Overlay And Track (76.098mm,43.663mm)(76.098mm,45.491mm) on Top Overlay Silk Text to Silk Clearance [0.022mm]
+Rule Violations :8
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+
+Violations Detected : 10
+Waived Violations : 0
+Time Elapsed        : 00:00:01

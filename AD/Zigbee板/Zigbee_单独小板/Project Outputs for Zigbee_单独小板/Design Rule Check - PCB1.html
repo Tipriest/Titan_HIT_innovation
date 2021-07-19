@@ -1,0 +1,362 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2021/5/11</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2:39:52</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc" class="file"><acronym title="C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc">C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">10</td></tr>
+</table>
+</td>
+</table><a name="IDHRNSIXRPQYS4P3PN5I0WD0CFZHQQ2ZKTUGGBUSDKGYHHTQKUF4LC"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3WOFQ3NEVVHLCA1TPHW1XCYHEOML4VYJQQPDLSP4JKCWBCYA1PEB">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDISJ2FLGEHJKC0XVK2UFGN3C3GA52Y3TJPIBGLEL5MBU3EBGJHNI">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLTQ3DESRVH50IXDDAAAXJPIF2IRX2IILNRWDOLKDDPSK0RTJXMEF">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRNZTCXCDUAKVPSGJSTUGX4GRBHZILCKIR3WUEIC2N3NBB1LTIGAM">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJSC2VAXBHC5IC00RFR1CVTVASOREPWJI0OOUSCNGO5HUHMWVTJXM">Width Constraint (Min=0.254mm) (Max=2.54mm) (Preferred=0.762mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOY1YQ01RD2N4M5DMDKRCL2UOZJZJSBMJVTPSVLFQYSNHEA3RCF4F">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQQTGDBAPZUTTEL5SCWWQ5PFVCKM2YMNWIS3XU5ED52P3O3ZMYBTN">Hole Size Constraint (Min=0.025mm) (Max=3.5mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCQJUYRIF3UJ0MOMAAHNMGWJDNHY4KIH2D2CYI2HLUIJA2MGTQUEJ">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGHEXXQDUX4VOJGHTQL2LVFS3TIGPV54BFS1K0VDAGKYLPOXYMK1K">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBOFIDKRAZD4SB2PUIESWAZORIDIZCFF5QESU0HKD55EA501YG">Silk To Solder Mask (Clearance=0.025mm) (IsPad),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDY3LHGCHALGX4MPN31O0XPCKQKN3KJME2GT3JMZDREKBHOQGMSNQE">Silk to Silk (Clearance=0.025mm) (All),(All)</a></td>
+<td class="column2">8</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSGGJDOF25CFLCSFN4LZECUBPNNARVFT22PWDRFNWRWFHVJSGQRKF">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUNU2CDD44JNBDZEMGY34BE5XSOPOU1XHIALX2QCCCVRT1XUBHHS">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">10</td>
+</tr>
+</table><br><a name="IDBOFIDKRAZD4SB2PUIESWAZORIDIZCFF5QESU0HKD55EA501YG"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.025mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3772.814mil|Location2.X=3775.064mil|Location1.Y=1079.036mil|Location2.Y=1081.286mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3772.814mil|Location2.X=3775.064mil|Location1.Y=1079.036mil|Location2.Y=1081.286mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.004mm &lt; 0.025mm) Between Pad Free-0(97.536mm,27.813mm) on Multi-Layer And Track (92.506mm,27.433mm)(95.756mm,27.433mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.004mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3773.026mil|Location2.X=3774.692mil|Location1.Y=1110.662mil|Location2.Y=1112.329mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3773.026mil|Location2.X=3774.692mil|Location1.Y=1110.662mil|Location2.Y=1112.329mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.025mm) Between Pad Free-0(97.536mm,27.813mm) on Multi-Layer And Track (95.756mm,27.433mm)(95.756mm,43.433mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDY3LHGCHALGX4MPN31O0XPCKQKN3KJME2GT3JMZDREKBHOQGMSNQE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.025mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3707.835mil|Location2.X=3709.502mil|Location1.Y=1507.049mil|Location2.Y=1508.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3707.835mil|Location2.X=3709.502mil|Location1.Y=1507.049mil|Location2.Y=1508.716mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.025mm) Between Text "DRF1609H" (94.488mm,37.846mm) on Top Overlay And Text "DTK ELECTRONICS" (94.488mm,39.751mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2524.587mil|Location2.X=2526.253mil|Location1.Y=1624.176mil|Location2.Y=1625.843mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2524.587mil|Location2.X=2526.253mil|Location1.Y=1624.176mil|Location2.Y=1625.843mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.025mm) Between Text "P1" (64.262mm,41.275mm) on Top Overlay And Track (64.056mm,36.233mm)(64.056mm,43.133mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3213.888mil|Location2.X=3216.138mil|Location1.Y=1793.88mil|Location2.Y=1796.13mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3213.888mil|Location2.X=3216.138mil|Location1.Y=1793.88mil|Location2.Y=1796.13mil|Absolute=True">Silk To Silk Clearance Constraint: (0mm &lt; 0.025mm) Between Text "R1" (81.661mm,45.72mm) on Top Overlay And Track (81.509mm,45.491mm)(85.623mm,45.491mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2828.867mil|Location2.X=2831.117mil|Location1.Y=1798.885mil|Location2.Y=1801.135mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2828.867mil|Location2.X=2831.117mil|Location1.Y=1798.885mil|Location2.Y=1801.135mil|Absolute=True">Silk To Silk Clearance Constraint: (0.001mm &lt; 0.025mm) Between Text "R2" (72.009mm,45.72mm) on Top Overlay And Text "ZTX1" (66.676mm,45.72mm) on Top Overlay Silk Text to Silk Clearance [0.001mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2833.327mil|Location2.X=2835.577mil|Location1.Y=1793.883mil|Location2.Y=1796.133mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2833.327mil|Location2.X=2835.577mil|Location1.Y=1793.883mil|Location2.Y=1796.133mil|Absolute=True">Silk To Silk Clearance Constraint: (0.002mm &lt; 0.025mm) Between Text "R2" (72.009mm,45.72mm) on Top Overlay And Track (71.984mm,43.663mm)(71.984mm,45.491mm) on Top Overlay Silk Text to Silk Clearance [0.002mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2833.891mil|Location2.X=2836.141mil|Location1.Y=1793.88mil|Location2.Y=1796.13mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2833.891mil|Location2.X=2836.141mil|Location1.Y=1793.88mil|Location2.Y=1796.13mil|Absolute=True">Silk To Silk Clearance Constraint: (0mm &lt; 0.025mm) Between Text "R2" (72.009mm,45.72mm) on Top Overlay And Track (71.984mm,45.491mm)(76.098mm,45.491mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2996.687mil|Location2.X=3005.359mil|Location1.Y=1790.937mil|Location2.Y=1796.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2996.687mil|Location2.X=3005.359mil|Location1.Y=1790.937mil|Location2.Y=1796.173mil|Absolute=True">Silk To Silk Clearance Constraint: (0.022mm &lt; 0.025mm) Between Text "ZRX1" (76.201mm,45.72mm) on Top Overlay And Track (71.984mm,45.491mm)(76.098mm,45.491mm) on Top Overlay Silk Text to Silk Clearance [0.022mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\%E5%A4%A7%E5%88%9B\AD\Zigbee%E6%9D%BF\Zigbee_%E5%8D%95%E7%8B%AC%E5%B0%8F%E6%9D%BF\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2996.687mil|Location2.X=3005.359mil|Location1.Y=1790.937mil|Location2.Y=1796.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\a1503\Desktop\大创\AD\Zigbee板\Zigbee_单独小板\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2996.687mil|Location2.X=3005.359mil|Location1.Y=1790.937mil|Location2.Y=1796.173mil|Absolute=True">Silk To Silk Clearance Constraint: (0.022mm &lt; 0.025mm) Between Text "ZRX1" (76.201mm,45.72mm) on Top Overlay And Track (76.098mm,43.663mm)(76.098mm,45.491mm) on Top Overlay Silk Text to Silk Clearance [0.022mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
